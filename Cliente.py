@@ -1,4 +1,5 @@
 from datetime import date
+import csv
 
 class Cliente:
     def __init__(self, id, nombre, apellido_paterno, apellido_materno, genero, fecha_nacimiento, rut, email, telefono, domicilio):
@@ -90,8 +91,35 @@ class Cliente:
     def set_domicilio(self, newdomicilio):
         self.domicilio = newdomicilio
     
-    def set_mascotas(self, newmascotas, i):
-        self.mascotas = newmascotas[i]
+    def agregar_mascota(self, mascota):
+        self.mascotas.append(mascota)
 
-    def set_historial(self, newhistorial, i):
-        self.historial = newhistorial[i]
+    def agregar_historial(self, historial):
+        self.historial.append(historial)
+
+def cargar():
+    id = input('Ingrese el id')
+    nombre = input('Ingrese el nombre')
+    apellido_paterno = input('Ingrese el apellido paterno')
+    apellido_materno = input('Ingrese el apellido materno')
+    genero = input('Ingrese su genero')
+    fecha_nacimiento = input('Ingrese su fecha de nacimiento')
+    rut = input('Ingrese su rut')
+    email = input('Ingrese su email')
+    telefono = input('Ingrese su teléfono')
+    domicilio = input('Ingrese su domicilio')
+
+    cliente = Cliente(id, nombre, apellido_paterno, apellido_materno, genero, fecha_nacimiento, rut, email, telefono, domicilio)
+    Clientes.append(cliente)
+
+Clientes = []
+
+def guardar():
+    with open('clientes.csv', mode='a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['id', 'nombre', 'apellido_paterno', 'apellido_materno', 'genero', 'fecha_nacimiento', 'rut', 'email', 'telefono', 'domicilio'])
+        for cliente in Clientes:
+            writer.writerow([cliente.get_id(), cliente.get_nombre(), cliente.get_apellido_paterno(), cliente.get_apellido_materno(), cliente.get_genero(), cliente.get_fecha_nacimiento(), cliente.get_rut(), cliente.get_email(), cliente.get_telefono(), cliente.get_domicilio()])
+
+
+
