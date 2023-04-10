@@ -38,26 +38,26 @@ class Usuario:
 
 ##Separación entre getters y setters
     
-    def set_id(self, newid):
-        self.id = newid
+    def set_id(self, id):
+        self.id = id
 
-    def set_nombre(self, newnombre):
-        self.nombre = newnombre
+    def set_nombre(self, nombre):
+        self.nombre = nombre
     
-    def set_apellido_paterno(self, newapellido_paterno):
-        self.apellido_paterno = newapellido_paterno
+    def set_apellido_paterno(self, apellido_paterno):
+        self.apellido_paterno = apellido_paterno
     
-    def set_apellido_materno(self, newapellido_materno):
-        self.apellido_materno = newapellido_materno
+    def set_apellido_materno(self, apellido_materno):
+        self.apellido_materno = apellido_materno
 
-    def set_genero(self, newgenero):
-        self.genero = newgenero
+    def set_genero(self, genero):
+        self.genero = genero
 
-    def set_fecha_nacimiento(self, newfecha_nacimiento):
-        self.fecha_nacimiento = newfecha_nacimiento
+    def set_fecha_nacimiento(self, fecha_nacimiento):
+        self.fecha_nacimiento = fecha_nacimiento
 
-    def set_rut(self, newrut):
-        self.rut = newrut
+    def set_rut(self, rut):
+        self.rut = rut
 
     def agregar_cargo(self, cargo):
         self.cargo.append(cargo)
