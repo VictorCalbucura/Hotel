@@ -56,9 +56,6 @@ class Cliente:
     def get_historial(self):
         return self.historial
 
-    def get_historiall(self, i):
-        return self.historial[i]
-    
     ##Separación entre getters y setters
     
     def set_id(self, newid):
@@ -98,28 +95,36 @@ class Cliente:
         self.historial.append(historial)
 
 def cargar():
-    id = input('Ingrese el id')
-    nombre = input('Ingrese el nombre')
-    apellido_paterno = input('Ingrese el apellido paterno')
-    apellido_materno = input('Ingrese el apellido materno')
-    genero = input('Ingrese su genero')
-    fecha_nacimiento = input('Ingrese su fecha de nacimiento')
-    rut = input('Ingrese su rut')
-    email = input('Ingrese su email')
-    telefono = input('Ingrese su teléfono')
-    domicilio = input('Ingrese su domicilio')
+    id = input('Ingrese el id: ')
+    nombre = input('Ingrese el nombre: ')
+    apellido_paterno = input('Ingrese el apellido paterno: ')
+    apellido_materno = input('Ingrese el apellido materno: ')
+    genero = input('Ingrese su genero: ')
+    fecha_nacimiento = input('Ingrese su fecha de nacimiento: ')
+    rut = input('Ingrese su rut: ')
+    email = input('Ingrese su email: ')
+    telefono = input('Ingrese su teléfono: ')
+    domicilio = input('Ingrese su domicilio: ')
 
     cliente = Cliente(id, nombre, apellido_paterno, apellido_materno, genero, fecha_nacimiento, rut, email, telefono, domicilio)
     Clientes.append(cliente)
 
 Clientes = []
 
+cargar()
+
+try:
+    with open ('clientes.csv', mode ='x', newline='') as file:
+        escritor = csv.writer(file)
+        escritor.writerow(["Id , Nombre , Apellido Paterno , Apellido Materno , Genero , Fecha de nacimiento , Email, Rut , Telefono , Domicilio "])
+except FileExistsError:
+        pass
+
 def guardar():
     with open('clientes.csv', mode='a', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerow(['id', 'nombre', 'apellido_paterno', 'apellido_materno', 'genero', 'fecha_nacimiento', 'rut', 'email', 'telefono', 'domicilio'])
         for cliente in Clientes:
-            writer.writerow([cliente.get_id(), cliente.get_nombre(), cliente.get_apellido_paterno(), cliente.get_apellido_materno(), cliente.get_genero(), cliente.get_fecha_nacimiento(), cliente.get_rut(), cliente.get_email(), cliente.get_telefono(), cliente.get_domicilio()])
+            escritor = csv.writer(file)
+            escritor.writerow([cliente.get_id(), cliente.get_nombre(), cliente.get_apellido_paterno(), cliente.get_apellido_materno(), cliente.get_genero(), cliente.get_fecha_nacimiento(), cliente.get_rut(), cliente.get_email(), cliente.get_telefono(), cliente.get_domicilio()])
 
-
+guardar()
 
