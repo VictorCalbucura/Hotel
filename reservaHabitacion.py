@@ -1,3 +1,6 @@
+from datetime import date
+import csv
+
 class ReservaHabitacion:
     def __init__(self, idReserva, tipoMascota, tamMascota, habitacionSel, fechaEnt, cantMasc):
         self.idReserva = idReserva
@@ -60,3 +63,16 @@ class ReservaHabitacion:
                 print("La reserva con ID " + str(idReserva) + " ha sido cancelada.")
                 return
         print("No se encontró la reserva con ID " + str(idReserva) + ".")
+
+try:
+    with open ('Reservas.csv', mode ='x', newline='') as file:
+        escritor = csv.writer(file)
+        escritor.writerow(["Id , Tipo de Mascota , Tamano , Habitacion Seleccionada, Fecha de Entrada , Cantidad de Mascotas , Precio"])
+except FileExistsError:
+        pass
+
+def guardar(self):
+    with open('Reservas.csv', 'w', newline='') as file:
+        escritor = csv.writer(file)
+        for reserva in self.historial:
+            escritor.writerow([reserva.idReserva, reserva.tipoMascota, reserva.tamMascota, reserva.habitacionSel, reserva.fechaEnt, reserva.cantMasc, reserva.precio])
